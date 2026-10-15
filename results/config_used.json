@@ -1,0 +1,233 @@
+{
+  "target": "exp_sin",
+  "data": {
+    "n_train": 1000,
+    "n_val": 1000,
+    "n_test": 10000,
+    "data_seed": 0
+  },
+  "kan": {
+    "width": [
+      2,
+      1,
+      1
+    ],
+    "k": 3,
+    "grids": [
+      3,
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "steps_per_grid": 100,
+    "grid_update_steps": [
+      0,
+      10,
+      20,
+      30,
+      40
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "kan_wide": {
+    "width": [
+      2,
+      5,
+      1
+    ],
+    "seeds": [
+      0,
+      1
+    ]
+  },
+  "mlp": {
+    "configs": [
+      {
+        "depth": 2,
+        "widths": [
+          5,
+          10,
+          20,
+          50
+        ]
+      },
+      {
+        "depth": 3,
+        "widths": [
+          5,
+          10,
+          20
+        ]
+      },
+      {
+        "depth": 4,
+        "widths": [
+          5,
+          10
+        ]
+      }
+    ],
+    "steps": 600,
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "ablation": {
+    "orders": [
+      1,
+      2,
+      3
+    ],
+    "order_grids": [
+      3,
+      5,
+      10,
+      20,
+      50
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "smoke": {
+    "steps_per_grid": 10,
+    "grids": [
+      3,
+      5
+    ],
+    "n_train": 200,
+    "n_test": 500
+  },
+  "feynman": {
+    "equations": [
+      "I.6.2",
+      "I.12.11",
+      "I.16.6",
+      "I.27.6",
+      "I.44.4",
+      "II.35.18"
+    ],
+    "data": {
+      "n_train": 2000,
+      "n_val": 1000,
+      "n_test": 5000,
+      "seed": 0
+    },
+    "human": {
+      "grids": [
+        3,
+        5,
+        10
+      ],
+      "steps_per_grid": 100,
+      "seed": 0
+    },
+    "mlp": {
+      "depths": [
+        2,
+        3,
+        4
+      ],
+      "steps": 300,
+      "seed": 0
+    },
+    "simplify": {
+      "lambdas": [
+        0.01
+      ],
+      "seeds": [
+        0,
+        1
+      ],
+      "G": 5,
+      "theta": 0.01,
+      "steps_reg": 150,
+      "steps_retrain": 150,
+      "steps_affine": 60
+    },
+    "demo": {
+      "lambdas": [
+        0.01
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "pde": {
+    "width": [
+      2,
+      10,
+      1
+    ],
+    "grids": [
+      3,
+      5,
+      10,
+      20
+    ],
+    "steps_per_grid": 100,
+    "k": 3,
+    "ni": 10000,
+    "nb": 800,
+    "alpha": 0.01,
+    "mlp_depths": [
+      3,
+      4
+    ],
+    "seed": 0
+  },
+  "mnist": {
+    "root": "data",
+    "epochs": 10,
+    "batch_size": 256,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "n_val": 5000,
+    "grid_update_epochs": 3,
+    "seed": 0,
+    "models": [
+      {
+        "kan_width": [
+          784,
+          16,
+          10
+        ],
+        "G": 5,
+        "k": 3,
+        "mlp_depths": [
+          2,
+          3
+        ]
+      },
+      {
+        "kan_width": [
+          784,
+          8,
+          10
+        ],
+        "G": 10,
+        "k": 3,
+        "mlp_depths": [
+          2,
+          3
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+checkpoints/
+logs/
+results/smoke/
+.venv/
+notebooks/data/
+docs/completion_checklist.md

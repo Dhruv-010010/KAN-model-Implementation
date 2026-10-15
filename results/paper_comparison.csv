@@ -1,0 +1,8 @@
+Quantity,Paper (reported),This reproduction (measured)
+"[2,1,1] test-RMSE exponent vs G (mean sq. err.)",~3 (Sec. 2.4),"2.10 (G<=100, seed 0)"
+"[2,1,1] exponent vs G (sqrt of median sq. err.)",closer to 4 (Sec. 2.4),2.50
+"[2,1,1] exponents on the pre-saturation window G<=20 (chosen post hoc)",~3 / closer to 4,3.19 / 3.38
+Theory exponent for k=3,4 (Thm 2.1),4 (not measured; see order ablation)
+"[2,5,1] interpolation threshold G","predicted ~67, observed ~50","validation-optimal G = [20, 50] (seeds [0, 1]), grid list ...,20,50,100"
+"Best final test RMSE, KAN [2,1,1]",not tabulated,1.42e-05 (G=100) / best over G: 1.42e-05
+Test RMSE of validation-selected MLP (this sweep),"MLPs plateau, worse than KAN (Fig. 3.1)","1.16e-03 (MLP(depth 3), width 20, 501 params)"

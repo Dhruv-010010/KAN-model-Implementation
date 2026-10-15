@@ -1,0 +1,56 @@
+\begin{table}[!htb]
+\caption{Feynman equations, test RMSE: human-constructed KAN, equal-parameter MLP, pruned KAN, MLP with the pruned KAN's parameters, and the extracted symbolic formula.}\label{tab:feyn}
+\centering\footnotesize
+\begin{tabular}{lrrrrr}
+\toprule
+equation & KAN & MLP & pruned KAN & MLP (pruned) & symbolic \\
+\midrule
+I.6.2 & $3.3\!\times\!10^{-2}$ & $1.7\!\times\!10^{-3}$ & $6.3\!\times\!10^{-2}$ & $4.3\!\times\!10^{-3}$ & $6.5\!\times\!10^{-2}$ \\
+I.12.11 & $1.6\!\times\!10^{-4}$ & $1.1\!\times\!10^{-3}$ & $1.6\!\times\!10^{-3}$ & $9.2\!\times\!10^{-4}$ & $2.6\!\times\!10^{-2}$ \\
+I.16.6 & $4.2\!\times\!10^{-3}$ & $4.2\!\times\!10^{-3}$ & $2.2\!\times\!10^{-2}$ & $4.7\!\times\!10^{-2}$ & $1.5\!\times\!10^{-1}$ \\
+I.27.6 & $7.1\!\times\!10^{-5}$ & $3.1\!\times\!10^{-4}$ & $1.2\!\times\!10^{-3}$ & $5.6\!\times\!10^{-4}$ & $2.6\!\times\!10^{-3}$ \\
+I.44.4 & $3.5\!\times\!10^{-5}$ & $9.1\!\times\!10^{-4}$ & $1.7\!\times\!10^{-3}$ & $1.1\!\times\!10^{-3}$ & $8.2\!\times\!10^{-3}$ \\
+II.35.18 & $2.3\!\times\!10^{-2}$ & $5.6\!\times\!10^{-4}$ & $2.3\!\times\!10^{-2}$ & $4.2\!\times\!10^{-4}$ & $2.4\!\times\!10^{-2}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\caption{Poisson PINN: relative $L^2$ error against the exact solution and training time. KAN time is per 100-step grid stage (524\,s in total), MLP time covers all 400 steps.}\label{tab:pde}
+\centering\footnotesize
+\begin{tabular}{lrrr}
+\toprule
+model & params & rel.\ $L^2$ & s \\
+\midrule
+KAN[2,10,1] G=3 & 240 & $9.1\!\times\!10^{-3}$ & 95 \\
+KAN[2,10,1] G=5 & 300 & $5.5\!\times\!10^{-3}$ & 102 \\
+KAN[2,10,1] G=10 & 450 & $1.4\!\times\!10^{-3}$ & 126 \\
+KAN[2,10,1] G=20 & 750 & $6.4\!\times\!10^{-4}$ & 201 \\
+MLP d3 & 235 & $2.7\!\times\!10^{-3}$ & 85 \\
+MLP d4 & 261 & $5.2\!\times\!10^{-3}$ & 109 \\
+MLP d3 & 301 & $1.8\!\times\!10^{-3}$ & 87 \\
+MLP d4 & 309 & $6.1\!\times\!10^{-3}$ & 111 \\
+MLP d3 & 457 & $3.3\!\times\!10^{-3}$ & 86 \\
+MLP d4 & 477 & $8.2\!\times\!10^{-4}$ & 108 \\
+MLP d3 & 751 & $1.3\!\times\!10^{-3}$ & 85 \\
+MLP d4 & 757 & $7.4\!\times\!10^{-4}$ & 112 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\caption{MNIST (single seed, no augmentation): test accuracy (\%) and training time (s) at equal parameter counts.}\label{tab:mnist}
+\centering\footnotesize
+\begin{tabular}{lrrr}
+\toprule
+model & params & test acc. & s \\
+\midrule
+KAN h16 G5 & 127040 & 94.06 & 8 \\
+MLP depth 2 (vs h16) & 127210 & 97.35 & 2 \\
+MLP depth 3 (vs h16) & 126762 & 97.51 & 2 \\
+KAN h8 G10 & 95280 & 92.27 & 9 \\
+MLP depth 2 (vs h8) & 95410 & 97.37 & 2 \\
+MLP depth 3 (vs h8) & 95622 & 97.23 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}

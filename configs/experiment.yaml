@@ -1,0 +1,57 @@
+# Single source of truth for the experiments (notebook CONFIG is generated from this file).
+target: exp_sin            # f(x,y)=exp(sin(pi x)+y^2), paper Sec. 2.4 / Fig. 2.3
+data: {n_train: 1000, n_val: 1000, n_test: 10000, data_seed: 0}
+kan:
+  width: [2, 1, 1]
+  k: 3
+  grids: [3, 5, 10, 20, 50, 100]
+  steps_per_grid: 100
+  grid_update_steps: [0, 10, 20, 30, 40]
+  seeds: [0, 1, 2, 3]
+kan_wide:                  # [2,5,1] KAN for the interpolation-threshold check (Fig. 2.3 top-left)
+  width: [2, 5, 1]
+  seeds: [0, 1]
+mlp:
+  configs:                 # (depth = number of linear layers, hidden width)
+    - {depth: 2, widths: [5, 10, 20, 50]}
+    - {depth: 3, widths: [5, 10, 20]}
+    - {depth: 4, widths: [5, 10]}
+  steps: 600               # same total LBFGS steps as the KAN (6 grids x 100)
+  seeds: [0, 1, 2, 3]      # same number of seeds as the KAN
+ablation:
+  orders: [1, 2, 3]
+  order_grids: [3, 5, 10, 20, 50]
+  seeds: [0, 1, 2, 3]
+smoke: {steps_per_grid: 10, grids: [3, 5], n_train: 200, n_test: 500}
+
+# ---- tasks added for the assignment row "KAN layer + grid extension; compare with equal-parameter MLPs on
+# ---- symbolic-regression / PDE toy tasks and MNIST; try symbolic simplification"
+feynman:                    # paper Sec. 3.3 / Table 2 (dimensionless equations) + Sec. 2.5 simplification
+  equations: ["I.6.2", "I.12.11", "I.16.6", "I.27.6", "I.44.4", "II.35.18"]
+  data: {n_train: 2000, n_val: 1000, n_test: 5000, seed: 0}
+  human: {grids: [3, 5, 10], steps_per_grid: 100, seed: 0}
+  mlp: {depths: [2, 3, 4], steps: 300, seed: 0}
+  simplify: {lambdas: [0.01], seeds: [0, 1], G: 5, theta: 0.01, steps_reg: 150, steps_retrain: 150, steps_affine: 60}
+  demo: {lambdas: [0.01], seeds: [0, 1, 2]}     # worked example exp(sin(pi x)+y^2) of Sec. 2.5.2
+pde:                        # paper Sec. 3.4 (Poisson, PINN loss)
+  width: [2, 10, 1]
+  grids: [3, 5, 10, 20]
+  steps_per_grid: 100
+  k: 3
+  ni: 10000
+  nb: 800
+  alpha: 0.01
+  mlp_depths: [3, 4]
+  seed: 0
+mnist:                      # not in the paper; assignment extension
+  root: data
+  epochs: 10
+  batch_size: 256
+  lr: 0.001
+  weight_decay: 0.0001
+  n_val: 5000
+  grid_update_epochs: 3
+  seed: 0
+  models:                   # KAN configs; an MLP of (almost) equal parameter count is built for each
+    - {kan_width: [784, 16, 10], G: 5, k: 3, mlp_depths: [2, 3]}
+    - {kan_width: [784, 8, 10], G: 10, k: 3, mlp_depths: [2, 3]}
